@@ -5,6 +5,7 @@
 ### Terraform ###
 # Local .terraform directories
 **/.terraform/*
+.terraform
 
 # .tfstate files
 *.tfstate
@@ -163,6 +164,9 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+# VS Code
+.vscode
 
 # yarn v2
 .yarn/cache

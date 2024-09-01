@@ -2,8 +2,8 @@
 data "aws_iam_policy_document" "iam-s3-landing-policy" {
   statement {
     principals {
-      type        = ""
-      identifiers = [""]
+      type        = "AWS"
+      identifiers = ["${data.aws_caller_identity.current.account_id}"]
     }
 
     actions = [
@@ -21,8 +21,8 @@ data "aws_iam_policy_document" "iam-s3-landing-policy" {
 data "aws_iam_policy_document" "iam-s3-processed-policy" {
   statement {
     principals {
-      type        = ""
-      identifiers = [""]
+      type        = "AWS"
+      identifiers = ["${data.aws_caller_identity.current.account_id}"]
     }
 
     actions = [

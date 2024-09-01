@@ -46,12 +46,12 @@ resource "aws_route_table_association" "vpc-1-public-subnet-1-route-table-associ
     route_table_id = "${aws_route_table.vpc-1-route-table.id}"
 }
 
-resource "aws_elastic_ip" "public-subnet-1-elastic-ip" {
+resource "aws_eip" "public-subnet-1-elastic-ip" {
     # Public IP
-    vpc = true
+    domain = "vpc"
     network_interface = "${aws_network_interface.public-subnet-1-network-interface.id}"
-    associate_with_private_id = "10.0.1.100"
-    depends_on = "${aws_internet_gateway.vpc-1-internet-gateway}"
+    associate_with_private_ip = "10.0.1.100"
+    depends_on = [aws_internet_gateway.vpc-1-internet-gateway]
 }
 
 resource "aws_security_group" "public-subnet-1-security-group-allow-web" {
@@ -63,14 +63,14 @@ resource "aws_security_group" "public-subnet-1-security-group-allow-web" {
         from_port = 443
         to_port = 443
         protocol = "tcp"
-        cidr_block = ["0.0.0.0/0"]
+        cidr_blocks = ["0.0.0.0/0"]
     }
     ingress {
         description = "HTTP from Internet"
         from_port = 80
         to_port = 80
         protocol = "tcp"
-        cidr_block = ["0.0.0.0/0"]
+        cidr_blocks = ["0.0.0.0/0"]
     }
     egress {
         # Allow all
