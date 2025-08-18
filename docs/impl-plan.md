@@ -75,7 +75,32 @@ This implementation plan breaks the work into small, meaningful iterations based
   - Passing unit tests with core UI covered and coverage reporting configured.
 - Dependencies: Iteration 4.
 
-## Iteration 7 — GitHub Actions CI
+## Iteration 7 — Move All Content to Metadata (site.json)
+- Status: Completed (2025-08-18)
+- Tasks
+  - Create `src/content/site.json` to centralize visible copy: header, home, faq, footer.
+  - Enable JSON imports in `tsconfig.app.json`.
+  - Refactor `Header`, `Home`, and `Footer` to read content from `site.json`.
+  - Update unit tests to load metadata instead of hardcoded strings.
+- Deliverables
+  - All visible text is driven by `site.json`; components and tests use metadata.
+  - Note: FAQ content later moved to dedicated `src/content/faq.json` for modularity.
+- Dependencies: Iteration 4, Iteration 6.
+
+## Iteration 8 — FAQs Page and Routing (Option A)
+- Status: Completed (2025-08-18)
+- Tasks
+  - Install `react-router-dom`.
+  - Create `src/pages/Faq.tsx` rendering items from metadata.
+  - Refactor `App.tsx` to use `RouterProvider` with a `Layout` (`Header`, `Outlet`, `Footer`); add `/faq` route.
+  - Update `Header` to support route links (`/faq`) and in-page hash links (`/#about`, etc.).
+  - Add `tests/pages/Faq.test.tsx` and adjust existing tests to reflect routing and metadata.
+- Deliverables
+  - `/faq` page served via React Router; navigation works; tests pass.
+  - Note: FAQ content now sourced from `src/content/faq.json`.
+- Dependencies: Iteration 7.
+
+## Iteration 9 — GitHub Actions CI
 - Tasks
   - Add `.github/workflows/frontend-ci.yml`:
     - Triggers: PRs and pushes to `main` (or default branch).
@@ -86,7 +111,7 @@ This implementation plan breaks the work into small, meaningful iterations based
   - CI enforces quality gates and build integrity.
 - Dependencies: Iteration 3, Iteration 6.
 
-## Iteration 8 — AWS Amplify Hosting via Terraform
+## Iteration 10 — AWS Amplify Hosting via Terraform
 - Tasks
   - In `terraform/`, define or update resources:
     - `aws_amplify_app` connected to this GitHub repo.
@@ -97,9 +122,9 @@ This implementation plan breaks the work into small, meaningful iterations based
   - Verify automatic builds and deployments occur on push to `main`.
 - Deliverables
   - Amplify app URL serving the built frontend; optional custom domain.
-- Dependencies: Iteration 7.
+- Dependencies: Iteration 9.
 
-## Iteration 9 — Documentation and Developer Experience
+## Iteration 11 — Documentation and Developer Experience
 - Tasks
   - Update `frontend/README.md` with local dev, scripts, testing, and CI/CD notes.
   - Update `docs/spec.md` if scope or architecture evolves and cross-link this `impl-plan.md`.

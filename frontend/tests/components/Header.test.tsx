@@ -1,16 +1,18 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Header } from '../../src/components/Header';
+import site from '../../src/content/site.json';
 
 describe('Header', () => {
-  it('renders site name and nav links', () => {
+  it('renders brand and nav links', () => {
     render(<Header />);
     expect(screen.getByRole('banner')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /photos/i })).toBeInTheDocument();
-    const about = screen.getAllByRole('link', { name: /about/i });
-    const contact = screen.getAllByRole('link', { name: /contact/i });
-    expect(about.length).toBeGreaterThan(0);
-    expect(contact.length).toBeGreaterThan(0);
+    expect(screen.getByRole('link', { name: new RegExp(site.header.brand, 'i') })).toBeInTheDocument();
+
+    // Ensure each configured nav item is present
+    for (const item of site.header.nav) {
+      expect(screen.getAllByRole('link', { name: new RegExp(item.label, 'i') }).length).toBeGreaterThan(0);
+    }
   });
 
   it('toggles mobile menu', () => {

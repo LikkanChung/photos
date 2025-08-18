@@ -1,0 +1,25 @@
+{
+  "title": "FAQs",
+  "intro": "Answers to common questions about shoots, licensing, and prints.",
+  "items": [
+    { "q": "Question 1?", "a": "Answer placeholder 1" },
+    { "q": "Question 2?", "a": "Answer placeholder 2" },
+    { "q": "Question 3?", "a": "Answer placeholder 3" }
+  ],
+  "contact": {
+    "title": "Got more questions?",
+    "body": "If you have more questions or need specific information, feel free to reach out!",
+    "cta": [
+        {
+            "id": "instagram",
+            "text": "Send me a message on Instagram",
+            "href": "https://instagram.com/lkc.ultimate"
+        },
+        {
+            "id": "contact-form",
+            "text": "Contact me",
+            "href": "/#contact"
+        }
+    ]
+  }
+}

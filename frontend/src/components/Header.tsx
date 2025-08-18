@@ -4,6 +4,13 @@ import site from '../content/site.json';
 export function Header() {
   const [open, setOpen] = useState(false);
 
+  const normalizeHref = (href: string) => {
+    // Route to /faq as-is; for in-page anchors, ensure we stay on root path
+    if (href.startsWith('/')) return href;
+    if (href.startsWith('#')) return `/${href}`; // becomes '/#section'
+    return href;
+  };
+
   return (
     <header className="sticky top-0 z-10 bg-white/80 backdrop-blur border-b">
       <a
@@ -16,7 +23,7 @@ export function Header() {
         className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between"
         aria-label="Primary"
       >
-        <a href="#home" className="text-xl font-semibold">
+        <a href="/" className="text-xl font-semibold">
           {site.header.brand}
         </a>
 
@@ -34,7 +41,7 @@ export function Header() {
         <ul id="primary-nav" className="hidden sm:flex gap-6 text-sm">
           {site.header.nav.map((item) => (
             <li key={item.href}>
-              <a href={item.href} className="hover:underline">
+              <a href={normalizeHref(item.href)} className="hover:underline">
                 {item.label}
               </a>
             </li>
@@ -47,7 +54,7 @@ export function Header() {
           <ul className="mx-auto max-w-5xl px-4 py-3 flex flex-col gap-3 text-sm">
             {site.header.nav.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="hover:underline" onClick={() => setOpen(false)}>
+                <a href={normalizeHref(item.href)} className="hover:underline" onClick={() => setOpen(false)}>
                   {item.label}
                 </a>
               </li>
