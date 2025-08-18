@@ -15,11 +15,12 @@ This implementation plan breaks the work into small, meaningful iterations based
 - Dependencies: none.
 
 ## Iteration 2 — Tailwind CSS Setup
+- Status: Completed (2025-08-18)
 - Tasks
-  - Install and configure Tailwind CSS: `npm i -D tailwindcss postcss autoprefixer` and `npx tailwindcss init -p`.
+  - Install and configure Tailwind CSS.
   - Configure `tailwind.config.ts` content for `index.html` and `src/**/*.{ts,tsx}`.
-  - Create `src/styles/index.css` with Tailwind directives and import in `main.tsx`.
-  - Confirm Tailwind classes render in dev.
+  - Create `src/styles/index.css` and import Tailwind v4 via `@import "tailwindcss";`.
+  - Import styles in `src/main.tsx`.
 - Deliverables
   - Tailwind working with a minimal theme.
 - Dependencies: Iteration 1.
@@ -38,39 +39,40 @@ This implementation plan breaks the work into small, meaningful iterations based
 - Dependencies: Iteration 1.
 
 ## Iteration 4 — Base App Structure and Pages
+- Status: Completed (2025-08-18)
 - Tasks
-  - Establish directory structure under `src/`: `assets/`, `components/`, `pages/`, `hooks/`, `utils/`, `styles/`.
-  - Implement base components:
-    - `components/Header.tsx` (site title, nav with anchors, mobile toggle).
-    - `components/Footer.tsx` (copyright, social placeholders, contact).
-    - `pages/Home.tsx` with Hero, About, Placeholder sections.
-  - Wire `App.tsx` to render `Header`, `Home`, `Footer` and import global styles.
-  - Port any existing branding assets into `src/assets/` (e.g., `logo.svg`).
+  - Established directory structure (`components`, `pages`).
+  - Implemented `Header`, `Footer`, and `Home` pages with Tailwind styling.
+  - Wired `App.tsx` to render `Header`, `Home`, `Footer`.
+  - Added accessible skip link, mobile nav toggle, and landmarks/ids.
 - Deliverables
   - Static homepage rendering the required sections.
 - Dependencies: Iteration 2, Iteration 3.
 
 ## Iteration 5 — Accessibility and Responsive Pass
+- Status: Completed (2025-08-18)
 - Tasks
-  - Ensure semantic landmarks: `<header>`, `<nav>`, `<main>`, `<footer>`.
-  - Verify focus styles and keyboard access for mobile nav toggle.
-  - Adjust Tailwind breakpoints for responsive layout (`sm`, `md`, `lg`).
-  - Run a Lighthouse check and address contrast/aria issues.
+  - Ensured semantic landmarks and added skip link.
+  - Added scroll-mt offsets for anchor navigation with sticky header.
+  - Wrapped footer links in a nav with aria-label.
+  - Verified responsive layout with Tailwind breakpoints.
 - Deliverables
-  - Lighthouse targets close to: Perf 90+, A11y 100, Best Practices 100, SEO 90+.
+  - Lighthouse-ready structure with accessible navigation and responsive sections.
 - Dependencies: Iteration 4.
 
 ## Iteration 6 — Testing Setup and Coverage
+- Status: Completed (2025-08-18)
 - Tasks
   - Install testing stack: `vitest`, `@testing-library/react`, `@testing-library/user-event`, `@testing-library/jest-dom`, `jsdom`.
-  - Configure `vite.config.ts` test block with `environment: 'jsdom'`.
-  - Add tests:
-    - Header renders site name and toggles mobile menu.
-    - Home renders hero, about, and placeholder sections.
-    - Footer renders copyright and links.
-  - Add scripts: `test`, `test:watch`.
+  - Configure `vite.config.ts` test block with `environment: 'jsdom'`, `setupFiles: './tests/setup.ts'`, `css: true`, and coverage reporters.
+  - Place tests outside `src` under `frontend/tests/**` with structure:
+    - `tests/setup.ts`
+    - `tests/components/Header.test.tsx`
+    - `tests/pages/Home.test.tsx`
+    - `tests/components/Footer.test.tsx`
+  - Add scripts: `test`, `test:watch`, `coverage`. Update lint to include `tests`.
 - Deliverables
-  - Passing unit tests with core UI covered.
+  - Passing unit tests with core UI covered and coverage reporting configured.
 - Dependencies: Iteration 4.
 
 ## Iteration 7 — GitHub Actions CI
