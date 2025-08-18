@@ -3,6 +3,7 @@
 This implementation plan breaks the work into small, meaningful iterations based on the specification in `docs/spec.md`. Each iteration lists tasks, technical details, and dependencies. The plan aligns with coding standards (TypeScript, semicolons, single quotes, function-based React components, arrow callbacks) and deploys via AWS Amplify.
 
 ## Iteration 1 — Scaffolding the Frontend (Vite + React + TS)
+- Status: Completed (2025-08-18)
 - Tasks
   - Initialize a Vite React TypeScript app in `frontend/` without overwriting existing content; back up any existing `frontend` assets first.
     - Command: `npm create vite@latest frontend -- --template react-ts`
