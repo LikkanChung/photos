@@ -1,0 +1,46 @@
+{
+  "header": {
+    "brand": "lkc.ultimate",
+    "nav": [
+      { "label": "About", "href": "#about" },
+      { "label": "Featured Albums", "href": "#featured" },
+      { "label": "Contact", "href": "#contact" }
+    ]
+  },
+  "home": {
+    "featuredPlaceholder": "Featured work coming soon",
+    "contactTitle": "Contact",
+    "hero": {
+        "title": "lkc.ultimate",
+        "subtitle": "Hi, I'm Likkan, a Sports Photographer based in Birmingham, UK.",
+        "cta": {
+            "text": "Get in touch",
+            "href": "#contact"
+        }
+    },
+    "about": {
+        "title": "About",
+        "body": "I started playing Ultimate in 2021 and since 2023, I've been capturing the sport through photography. I cover events across the UK and Europe, including for the GB national teams.",
+        "cta": {
+            "text": "Follow me on Instagram",
+            "href": "https://instagram.com/lkc.ultimate"
+        }
+    },
+    "featured": {
+        "title": "Featured Albums",
+        "body": "Take a look at my latest photos from the last few events.",
+        "cta": {
+            "text": "See more albums",
+            "href": "https://photos.likkanchung.com"
+        }
+    },
+    "contact": {
+        "body": "Feel free to reach out for collaborations, event coverage, or just to say hi! I'm always open to connecting with fellow Ultimate enthusiasts and photographers."
+    }
+  },
+  "footer": {
+    "social": [
+      { "label": "Follow @lkc.ultimate on Instagram", "href": "https://instagram.com/lkc.ultimate" }
+    ]
+  }
+}

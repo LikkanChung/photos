@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import site from '../content/site.json';
 
 export function Header() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-10 bg-white/80 backdrop-blur border-b">
@@ -16,7 +17,7 @@ export function Header() {
         aria-label="Primary"
       >
         <a href="#home" className="text-xl font-semibold">
-          Photos
+          {site.header.brand}
         </a>
 
         <button
@@ -31,35 +32,29 @@ export function Header() {
         </button>
 
         <ul id="primary-nav" className="hidden sm:flex gap-6 text-sm">
-          <li>
-            <a href="#about" className="hover:underline">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#contact" className="hover:underline">
-              Contact
-            </a>
-          </li>
+          {site.header.nav.map((item) => (
+            <li key={item.href}>
+              <a href={item.href} className="hover:underline">
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
 
       {open && (
         <div className="sm:hidden border-t">
           <ul className="mx-auto max-w-5xl px-4 py-3 flex flex-col gap-3 text-sm">
-            <li>
-              <a href="#about" className="hover:underline" onClick={() => setOpen(false)}>
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:underline" onClick={() => setOpen(false)}>
-                Contact
-              </a>
-            </li>
+            {site.header.nav.map((item) => (
+              <li key={item.href}>
+                <a href={item.href} className="hover:underline" onClick={() => setOpen(false)}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       )}
     </header>
-  )
+  );
 }
