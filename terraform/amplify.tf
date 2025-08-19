@@ -41,9 +41,39 @@ resource "aws_amplify_app" "amplify-frontend" {
 
   # The default rewrites and redirects added by the Amplify Console.
   custom_rule {
-    source = "/<*>"
+    source = "/assets/<*>"
+    target = "/assets/<*>"
     status = "200"
+  }
+
+  custom_rule {
+    source = "/<*>.js"
+    target = "/<*>.js"
+    status = "200"
+  }
+
+  custom_rule {
+    source = "/<*>.css"
+    target = "/<*>.css"
+    status = "200"
+  }
+
+  custom_rule {
+    source = "/favicon.ico"
+    target = "/favicon.ico"
+    status = "200"
+  }
+
+  custom_rule {
+    source = "/index.html"
     target = "/index.html"
+    status = "200"
+  }
+
+  custom_rule {
+    source = "/<*>"
+    target = "/index.html"
+    status = "200"
   }
 
   environment_variables = {
