@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import faq from '../content/faq.json';
+import site from '../content/site.json';
 
 type FaqData = {
   title: string;
@@ -14,6 +16,10 @@ type FaqData = {
 const typedFaq = faq as FaqData;
 
 export default function Faq() {
+  useEffect(() => {
+    document.title = `${site.header.brand} — ${typedFaq.title}`;
+  }, []);
+
   return (
     <main id="faq" className="mx-auto max-w-5xl px-4" role="main">
       <section className="py-12">

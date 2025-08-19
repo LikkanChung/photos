@@ -1,5 +1,5 @@
-resource "aws_amplify_app" "amplify-admin-frontend" {
-  name       = "admin-frontend"
+resource "aws_amplify_app" "amplify-frontend" {
+  name       = "frontend"
   repository = "https://github.com/LikkanChung/photos"
   access_token = data.aws_ssm_parameter.github_pat.value
   platform = "WEB"
@@ -10,7 +10,7 @@ resource "aws_amplify_app" "amplify-admin-frontend" {
   enable_basic_auth           = false
 
   auto_branch_creation_patterns = [
-    "admin-frontend"
+    "frontend"
   ]
 
   auto_branch_creation_config {
@@ -20,29 +20,29 @@ resource "aws_amplify_app" "amplify-admin-frontend" {
 
   # The default build_spec added by the Amplify Console for React.
   build_spec = <<-EOT
-    version: 0.1
+    version: 1.0
     frontend:
       phases:
         preBuild:
           commands:
-            - cd admin-frontend
-            - npm install
+            - cd frontend
+            - npm ci
         build:
           commands:
             - npm run build
       artifacts:
-        baseDirectory: ./admin-frontend/build
+        baseDirectory: frontend/dist
         files:
           - '**/*'
       cache:
         paths:
-          - node_modules/**/*
+          - frontend/node_modules/**/*
   EOT
 
   # The default rewrites and redirects added by the Amplify Console.
   custom_rule {
     source = "/<*>"
-    status = "404"
+    status = "200"
     target = "/index.html"
   }
 
@@ -51,8 +51,8 @@ resource "aws_amplify_app" "amplify-admin-frontend" {
   }
 }
 
-resource "aws_amplify_branch" "amplify-admin-frontend-dev-branch" {
-  app_id = aws_amplify_app.amplify-admin-frontend.id
+resource "aws_amplify_branch" "amplify-frontend-dev-branch" {
+  app_id = aws_amplify_app.amplify-frontend.id
   branch_name = "admin-frontend"
 
   framework = "React"

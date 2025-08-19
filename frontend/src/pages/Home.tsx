@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import site from '../content/site.json';
 
 export function Home() {
+  useEffect(() => {
+    document.title = `${site.header.brand} — Home`;
+  }, []);
+
   return (
     <main id="home" className="mx-auto max-w-5xl px-4" role="main">
       <section className="py-20 text-center">
